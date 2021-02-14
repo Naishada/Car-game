@@ -25,9 +25,13 @@ class Game{
             form.display();
         }
         car1 = createSprite(100,200,20,20);
+        car1.addImage("car1",car01);
         car2 = createSprite(130,200,20,20);
+        car2.addImage("car2",car02);
         car3 = createSprite(160,200,20,20);
+        car3.addImage("car3",car03);
         car4 = createSprite(190,200,20,20);
+        car4.addImage("car4",car04);
         cars = [car1,car2,car3,car4];
     }
 
@@ -49,8 +53,10 @@ class Game{
         //for-in loop
         // Name : Distance
         var index = 0;
-        var xPos = 100;
+        var xPos = 425;
         var yPos;
+        console.log(player.distance);
+        image(track0,0,-4*height,width,5*height);
         for(var plr in allPlayers){
             //text( allPlayers[plr].name + ":" + allPlayers[plr].distance,250,y); 
             yPos = height - allPlayers[plr].distance;
@@ -59,17 +65,24 @@ class Game{
 
             if(player.index === index + 1){
                 cars[index].shapeColor = "red";
-                camera.position.y = cars[index].y
+                camera.position.y = cars[index].y-height/2;
             }
 
-            xPos = xPos + 50;
+            xPos = xPos + 200;
             index = index+1;
         }
         if(keyDown(UP_ARROW)){
             player.distance +=50;
             player.update();
         }
+        if(player.distance >= 3200){
+            gameState = 2;
+        }
+        
 
         drawSprites();
+    }
+    end(){
+        console.log("Game ended");
     }
 }
