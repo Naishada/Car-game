@@ -2,7 +2,8 @@ class Form{
     constructor(){
         this.input = createInput("Name");
         this.button =  createButton("Play");
-        this.greeting = createElement("h2")
+        this.greeting = createElement("h2");
+        this.reset = createButton("Reset");
     }
 
     display(){
@@ -14,6 +15,8 @@ class Form{
         this.input.position(400,0);
         
         this.button.position(400,30);
+        this.reset.position(1300,20);
+        this.greeting.position(700,500);
         //'this' should refer to form inside the function .. arrow function .. ()=>{//code}
         // arrow function changes binding of 'this'
         this.button.mousePressed(()=>{
@@ -25,6 +28,11 @@ class Form{
             player.index = playerCount;
             player.updateCount(playerCount);
             player.update();
+        })
+        this.reset.mousePressed(()=>{
+            game.update(0);
+            player.updateCount(0);
+            window.location.reload();
         })
     }
 };

@@ -64,8 +64,9 @@ class Game{
             cars[index].y = yPos;
 
             if(player.index === index + 1){
-                cars[index].shapeColor = "red";
-                camera.position.y = cars[index].y-height/2;
+                fill("red");
+                circle(xPos,yPos,100);
+                camera.position.y = cars[index].y-height/2+100;
             }
 
             xPos = xPos + 200;

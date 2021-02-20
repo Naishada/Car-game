@@ -29,7 +29,7 @@ function setup(){
 }
 
 function draw(){
-    background("white");
+    background(track1);
     
     if(playerCount === 2){
         game.update(1);
