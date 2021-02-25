@@ -3,6 +3,7 @@ class Player{
         this.name = null
         this.distance = 0
         this.index = null
+        this.rank = null
     }
 
     getCount(){
@@ -22,10 +23,24 @@ class Player{
         var playerIndex = "players/player" + this.index
         database.ref(playerIndex).set({
             name : this.name,
-            distance : this.distance
+            distance : this.distance,
+            rank : this.rank
         })
         
     }
+    //(data)=>{}
+    getFinishedCars(){
+        var finishedCarsRef = database.ref("finishedCars");
+        finishedCarsRef.on("value",(data)=>{
+            this.rank = data.val();
+        })
+    }
+    updateFinishedCars(rank){
+        database.ref("/").update({
+            finishedCars : rank
+        })
+    }
+    
     //Player.getAllPlayersInfo()
     // static function is attached to the class itself
     static getAllPlayersInfo(){
